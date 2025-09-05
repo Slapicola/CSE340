@@ -1,6 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 /******* Change Box Model ***************/
 *,
 *:before,
 *:after {
   box-sizing: border-box;
 }
+/********* Header *************/
+.siteName a{
+  color: black;
+  font-family: "Open Sans", sans-serif;
+  font-size: 30px;
+  text-decoration: none;
+}
+
+#tools a {
+  color: black;
+  text-decoration: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/******** Nav ********/
+nav {
+  background-color: black;
+}
+nav ul{
+  list-style-type: none;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-around;
+}
+
+/****** Body *******/
+h1 {
+  font-size: 20px;
+}
+
+#hero-image {
+  text-align: center;
+  position: relative;
+}
+
+#car {
+  width: 300px;
+  height: 152px;
+}
+
+#info {
+  position: absolute;
+  color: rgb(44, 131, 131);
+  top: -10%;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+#info h2 {
+  margin-bottom: 0.5em;
+}
+
+#info p {
+  margin-top: 0;
+  margin-bottom: 0.05em;
+}
+
+#reviews ul {
+  line-height: 1.75;
+  font-family: "Open Sans", sans-serif;
+}
+
+#reviews li {
+  font-size: 15px;
+}
+
+#upgrades div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#upgrades figure {
+  background-color: rgb(23, 175, 181);
+  border: solid black 2px;
+  padding: 2em;
+  margin: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#upgrades figcaption {
+  font-family: "Open Sans", sans-serif;
+}
+
+#upgrades figcaption a {
+  color: black;
+}
+
+
+
+@media screen and (min-width: 1400px) {
+  html {
+    background-image: url(../images/site/checkerboard.jpg);
+    background-size: cover;
+    background-position: center;
+    /* background-repeat: no-repeat; */
+    height: 100%;
+  }
+
+  nav li {
+    font-size: 20px;
+  }
+  
+  #wrapper {
+    margin: 2em;
+    padding: 1em;
+    background-color: white;
+    border: lightblue solid 5px;
+    border-radius: 2em;
+  }
+
+  #info {
+    font-size: 20px;
+  }
+  
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.3fr 0.5fr 1fr;
+  }
+
+    #car {
+      width: 500px;
+      height: 252px;
+    }
+
+  h1 {
+    font-size: 40px;
+  }
+
+    h2 {
+      font-size: 30px;
+    }
+  #hero-image {
+    grid-column: span 2;
+    grid-row: 2;
+  }
+
+  #reviews {
+    grid-row: 3;
+    grid-column: 2;
+  }
+
+  #reviews li {
+    font-size: 25px;
+  }
+
+  #upgrades {
+    grid-row: 3;
+    grid-column: 1;
+  }
+}
+
+
+
+
