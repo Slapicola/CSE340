@@ -10,7 +10,9 @@ const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
-
+const baseController = require("./controllers/baseController")
+const inventoryRoute = require("./routes/inventoryRoute")
+const utilities = require("./utilities")
 /* ***********************
  * View Engine and Templates
  *************************/
@@ -27,9 +29,31 @@ app.set('views', path.join(__dirname, 'views/layouts'));
  *************************/
 app.use(static)
 //Index Route
-app.get("/", function (req, res) {
-  res.render("index", {title: "Home"})
+app.get("/", utilities.handleErrors(baseController.buildHome))
+// Inventory routes
+app.use("/inv", inventoryRoute)
+
+// File Not Found Rout - must be last route in the list
+app.use(async (req, res, next) => {
+  next({ status: 404, message: "Whoops, it seems you've went off-road!" })
 })
+/***************************
+ * Express Error Handler
+ * Place after all other middleware
+ ***************************/
+app.use(async (error, req, res, next) => {
+  let nav = await utilities.getNav()
+  console.error(`Error at: "${req.originalUrl}": ${error.message}`)
+  if(error.status == 404){ message = error.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'} 
+  res.render("errors/error", {
+    title: error.status || 'Server Error',
+    message,
+    nav
+  })
+})
+
+
+
 
 /* ***********************
  * Local Server Information
