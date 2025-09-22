@@ -1,0 +1,13 @@
+<!-- The Content Heading, descrides the content of the view -->
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+    <% }else{ 
+        res.redirect('/') } %>
+
+        <!-- A Message Block, used to display messages in a view -->
+        <%# messages() %>
+
+            <!-- Vehicle Display, display the content -->
+            <%- card %>

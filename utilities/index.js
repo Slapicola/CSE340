@@ -46,6 +46,9 @@ Util.buildClassificationGrid = async function(data) {
                 + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">'
                 + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
             grid += '</h2>'
+            grid += '<span>$'
+                + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
+            grid += '</div>'
             grid += '</li>'
         })
         grid += '</ul>'
@@ -53,6 +56,34 @@ Util.buildClassificationGrid = async function(data) {
         grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
     }
     return grid
+}
+
+/******************
+ * Build detail view HTML
+ *****************/
+Util.buildDetailsCard = async function (data) {
+    let card = ''
+    if (data) {
+        card = '<section id="vehicleCard">'
+        // card += title
+            card += '<img src="' + data.inv_image
+            + '" alt="Image of ' + data.inv_make + ' ' + data.inv_model + '" />'
+        card += '<ul id="carInfo">'
+        card += '<li>' + "Price: $" + new Intl.NumberFormat('en-US').format(data.inv_price)
+        card += '</li>'
+        card += '<li>' + "Mileage: " + new Intl.NumberFormat('en-US').format(data.inv_miles)
+        card += '</li>'
+        card += '<li>' + "Description: " + data.inv_description
+        card += '</li>'
+        card += '<li>' + "Color: " + data.inv_color
+        card += '</li>'
+        card += '</ul>'
+
+    } else {
+        card = '<p> No vehicle data available. </p>'
+
+    }
+    return card
 }
 
 /*****************

@@ -167,5 +167,29 @@ h1 {
 }
 
 
+/********** Grid ***********/
+#inv-display {
+  list-style-type: none;
+}
+
+#vehicleCard {
+  display: grid;
+}
+
+#vehicleCard img {
+  width: 100%;
+}
+
+#vehicleCard ul {
+  font-weight: bold;
+  list-style-type: none;
+  line-height: 30px;
+}
+
+#vehicleCard li {
+  font-size: 25px;
+}
+
+
 
 
