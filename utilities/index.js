@@ -78,6 +78,7 @@ Util.buildDetailsCard = async function (data) {
         card += '<li>' + '<span> Color: </span>' + data.inv_color
         card += '</li>'
         card += '</ul>'
+        card += '</section>'
 
     } else {
         card = '<p> No vehicle data available. </p>'
