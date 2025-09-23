@@ -30,10 +30,14 @@ nav {
 }
 nav ul{
   list-style-type: none;
-  color: white;
   padding: 15px;
   display: flex;
   justify-content: space-around;
+}
+
+nav a {
+  color: rgb(44, 131, 131);
+  font-size: 20px;
 }
 
 /****** Body *******/
@@ -112,8 +116,8 @@ h1 {
     height: 100%;
   }
 
-  nav li {
-    font-size: 20px;
+  nav a {
+    font-size: 30px;
   }
   
   #wrapper {
@@ -130,8 +134,8 @@ h1 {
   
   main {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 0.3fr 0.5fr 1fr;
+    /* grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.3fr 0.5fr 1fr; */
   }
 
     #car {
@@ -164,12 +168,34 @@ h1 {
     grid-row: 3;
     grid-column: 1;
   }
+
+    #inv-display h2 {
+      font-size: 23px;
+    }
+
+    #vehicleCard {
+      grid-template-columns: 1fr 1fr;
+
+    }
 }
 
 
 /********** Grid ***********/
 #inv-display {
   list-style-type: none;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#inv-display li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 2rem;
 }
 
 #vehicleCard {
@@ -178,16 +204,30 @@ h1 {
 
 #vehicleCard img {
   width: 100%;
+  grid-column: 1;
 }
 
 #vehicleCard ul {
-  font-weight: bold;
   list-style-type: none;
-  line-height: 30px;
 }
 
 #vehicleCard li {
   font-size: 25px;
+  font-family: "Open Sans", sans-serif;
+  margin-bottom: 0.5em;
+}
+
+.namePrice span {
+  background-color: black;
+  color: white;
+  padding: 0.5em;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 1em;
+}
+
+#vehicleCard span {
+  font-weight: bold;
 }
 
 

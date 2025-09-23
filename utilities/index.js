@@ -35,7 +35,7 @@ Util.buildClassificationGrid = async function(data) {
         data.forEach(vehicle => {
             grid += '<li>'
             grid += '<a href="../../inv/detail/' + vehicle.inv_id
-                + '"title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model
+                + ' " title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model
                 + 'details"><img src="' + vehicle.inv_thumbnail
                 + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model
                 + ' on CSE Motors" /></a>'
@@ -69,13 +69,13 @@ Util.buildDetailsCard = async function (data) {
             card += '<img src="' + data.inv_image
             + '" alt="Image of ' + data.inv_make + ' ' + data.inv_model + '" />'
         card += '<ul id="carInfo">'
-        card += '<li>' + "Price: $" + new Intl.NumberFormat('en-US').format(data.inv_price)
+        card += '<li>' + '<span> Price: </span>' + '$' + new Intl.NumberFormat('en-US').format(data.inv_price)
         card += '</li>'
-        card += '<li>' + "Mileage: " + new Intl.NumberFormat('en-US').format(data.inv_miles)
+        card += '<li>' + '<span> Milage: </span>' + new Intl.NumberFormat('en-US').format(data.inv_miles)
         card += '</li>'
-        card += '<li>' + "Description: " + data.inv_description
+        card += '<li>' + '<span> Description: </span>' + data.inv_description
         card += '</li>'
-        card += '<li>' + "Color: " + data.inv_color
+        card += '<li>' + '<span> Color: </span>' + data.inv_color
         card += '</li>'
         card += '</ul>'
 
