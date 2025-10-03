@@ -1,0 +1,35 @@
+<!-- The Content Heading, descrides the content of the view -->
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+    <% }else{ res.redirect('/') } %>
+
+        <!-- A Message Block, used to display messages in a view -->
+        <%- messages() %>
+
+                        <% if (errors) { %>
+                            <ul class="notice">
+                                <% errors.array().forEach(error=> { %>
+                                    <li>
+                                        <%= error.msg %>
+                                    </li>
+                                    <% }) %>
+                            </ul>
+                            <% } %>
+
+
+            <!-- Managment links -->
+             <a id="newClass" href="/inv/add-classification">Add New Classification</a>
+             <a  id="newVehicle" href="/inv/add-vehicle">Add New Vehicle</a>
+
+             <h2>Manage Inventory</h2>
+             <p>Select a classification from the list</p>
+             <%- classificationSelect %>
+             <table id="inventoryDisplay"></table>
+             <noscript>Javascript must be enabled to use this page.</noscript>
+
+
+
+             <script src="../../js/inventory.js"></script>
+            

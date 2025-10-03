@@ -1,0 +1,28 @@
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+    <% }else{ res.redirect('/') } %>
+
+        <!-- A Message Block, used to display messages in a view -->
+        <%- messages() %>
+
+                        <% if (errors) { %>
+                            <ul class="notice">
+                                <% errors.forEach(error=> { %>
+                                    <li>
+                                        <%= error.msg %>
+                                    </li>
+                                    <% }) %>
+                            </ul>
+                            <% } %>
+
+            <!-- Classification form -->
+            <form id="classificationForm" action="/inv/add-classification" method="post">
+                <fieldset>
+                    <label for="className">Classification Name</label>
+                    <p>Name must be alphabetic characters only.</p>
+                    <input type="text" id="className" name="classification_name" required>
+                </fieldset>
+                <button type="submit">Add Classification</button>
+            </form>

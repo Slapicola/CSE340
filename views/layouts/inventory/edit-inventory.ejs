@@ -1,0 +1,45 @@
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+    <% }else{ res.redirect('/') } %>
+
+        <!-- A Message Block, used to display messages in a view -->
+        <%- messages() %>
+
+            <!-- Classification form -->
+            <form id="vehicleForm" action="/inv/edit-inventory" method="post">
+                <label for="class">Classification</label>
+                
+                
+                
+                <label for="make">Make</label>
+                <input type="text" name="inv_make" required placeholder="Min of 3 characters">
+                
+                <label for="model">Model</label>
+                <input type="text" name="inv_model" required placeholder="Min of 3 characters">
+                
+                <label for="description">Description</label>
+                <textarea name="inv_description" required>
+                </textarea>
+                
+                <label for="image">Image Path</label>
+                <input type="text" name="inv_image" required>
+                
+                <label for="thumbnail">Thumbnail Path</label>
+                <input type="text" name="inv_thumbnail" required>
+                
+                <label for="price">Price</label>
+                <input type="text" name="inv_price" required placeholder="decimal or integer">
+                
+                <label for="year">Year</label>
+                <input type="text" name="inv_year" required placeholder="4-digit year">
+                
+                <label for="miles">Miles</label>
+                <input type="text" name="inv_miles" required placeholder="digits only">
+                
+                <label for="color">Color</label>
+                <input type="text" name="inv_color" required>
+
+                <button type="submit">Update Vehicle</button>
+            </form>
