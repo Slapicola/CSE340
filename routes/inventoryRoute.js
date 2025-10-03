@@ -28,13 +28,10 @@ router.post('/add-classification',
     utilities.handleErrors(invController.addNewClass));
 
 //Route to post the new Vehicle
-router.post('/add-vehicle', async (req, res, next) => {
-    const validClassifications = await InvModel.getClassifications()
-    await Promise.all(invValidate.vehicleRules(validClassifications).map(v => v.run(req)))
-    next()
-},
-invValidate.checkVehicleData,
-utilities.handleErrors(invController.addNewVehicle))
+router.post('/add-vehicle',
+    invValidate.vehicleRules(),
+    invValidate.checkVehicleData,
+    utilities.handleErrors(invController.addNewVehicle))
 
 //Route to do something with inventory
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
