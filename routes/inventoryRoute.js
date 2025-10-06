@@ -45,6 +45,13 @@ router.post("/edit-inventory/",
     invValidate.checkUpdateData,
     utilities.handleErrors(invController.updateVehicle));
 
+//Route to view that confirms deletion of data
+router.get("/delete/:inv_id", utilities.handleErrors(invController.inventoryDeleteView));
 
+//Route to post the delete inventory form
+router.post("/delete-confirm/",
+    // invValidate.newVehicleRules(),
+    // invValidate.checkUpdateData,
+    utilities.handleErrors(invController.deleteVehicle));
 
 module.exports = router;
