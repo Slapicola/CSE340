@@ -5,6 +5,7 @@ const invController = require("../controllers/invController")
 const utilities = require("../utilities")
 const invValidate = require('../utilities/inventory-validation')
 const InvModel = require("../models/inventory-model")
+const validate = require("../utilities/inventory-validation")
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId));
@@ -48,10 +49,20 @@ router.post("/edit-inventory/",
 //Route to view that confirms deletion of data
 router.get("/delete/:inv_id", utilities.handleErrors(invController.inventoryDeleteView));
 
+//Route to view that confirms deletion of classification
+router.get("/delete-class/", utilities.handleErrors(invController.classDeleteView));
+
 //Route to post the delete inventory form
 router.post("/delete-confirm/",
     // invValidate.newVehicleRules(),
     // invValidate.checkUpdateData,
     utilities.handleErrors(invController.deleteVehicle));
+
+//Route to post the delete class form
+router.post("/delete-class/",
+    validate.deleteClassRules(),
+    validate.checkDeleteData,
+    utilities.handleErrors(invController.deleteClass)
+)
 
 module.exports = router;

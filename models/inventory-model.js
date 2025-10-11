@@ -93,6 +93,16 @@ async function deleteInventory(inv_id) {
     }
 }
 
+async function deleteClass(classification_id) {
+    try {
+        const sql = "DELETE FROM classification WHERE classification_id = $1"
+        const data = await pool.query(sql, [classification_id])
+        return data
+    } catch (error) {
+        console.error("model error: " + error)
+    }
+}
 
 
-module.exports = {getClassifications, getInventoryByClassificationId, getDetailsByInvId, addNewClass, addNewVehicle, updateInventory, deleteInventory}
+
+module.exports = {getClassifications, getInventoryByClassificationId, getDetailsByInvId, addNewClass, addNewVehicle, updateInventory, deleteInventory, deleteClass}

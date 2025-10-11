@@ -282,8 +282,7 @@ invCont.deleteVehicle = async function (req, res, next) {
     )
 
     if (deleteResults) {
-        const itemName = deleteResults.inv_make + " " + deleteResults.inv_model
-        req.flash("notice", `The ${itemName} was successfully deleted.`)
+        req.flash("notice", `The deletion was successful.`)
         res.redirect("/inv/")
     } else {
         req.flash("notice", "Sorry, the deletion failed.")
@@ -301,5 +300,46 @@ invCont.deleteVehicle = async function (req, res, next) {
         })
     }
 }
+
+/****************
+ * Build Delete Classification View
+ ****************/
+invCont.classDeleteView = async function (req, res, next) {
+    let nav = await utilities.getNav()
+    const classData = await invModel.getClassifications()
+    const classificationSelect = await utilities.buildClassificationList(classData.classification_id)
+    res.render("./inventory/delete-class", {
+        title: "Delete Classification",
+        nav,
+        errors: null,
+        classificationSelect: classificationSelect,
+    })
+}
+
+/***********************
+ * Delete Classification data
+ ***********************/
+invCont.deleteClass = async function (req, res, next) {
+    let nav = await utilities.getNav()
+    const { classification_id } = req.body
+
+    const deleteClassResults = await invModel.deleteClass(
+        classification_id,
+    )
+
+    if (deleteClassResults) {
+        req.flash("notice", `The classification was successfully deleted.`)
+        res.redirect("/inv/")
+    } else {
+        req.flash("notice", "Sorry, the deletion failed.")
+        res.status(501).render("./inventory/delete-class", {
+            title: "Delete Classification",
+            nav,
+            errors: null,
+            classification_id,
+        })
+    }
+}
+
 
 module.exports = invCont

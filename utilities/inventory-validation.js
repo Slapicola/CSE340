@@ -43,7 +43,7 @@ validate.checkClassData = async (req, res, next) => {
  ********************/
 validate.vehicleRules = () => {
     return [
-        //classification is required and must be a string
+        //classification is required and must be selected
         body("classification_id")
             .notEmpty().withMessage("Please select a classification name.")
             .isInt(),
@@ -267,6 +267,38 @@ validate.checkUpdateData = async (req, res, next) => {
             inv_miles,
             inv_color,
             inv_id,
+        })
+        return
+    }
+    next()
+}
+
+/********************
+ * Vehicle form validation rules
+ ********************/
+validate.deleteClassRules = () => {
+    return [
+        //classification is required and must be selected
+        body("classification_id")
+            .notEmpty().withMessage("Please select a classification name to delete.")
+            .isInt(),
+    ]
+}
+
+/**********************
+ * Check data and return errors or continue to edit view
+ **********************/
+validate.checkDeleteData = async (req, res, next) => {
+    const { classification_id } = req.body
+    const errors = validationResult(req)
+    const classificationSelect = await utilities.buildClassificationList(classification_id)
+    if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        res.render("inventory/delete-class", {
+            errors: errors.array(),
+            title: "Delete Classification",
+            nav,
+            classificationSelect,
         })
         return
     }

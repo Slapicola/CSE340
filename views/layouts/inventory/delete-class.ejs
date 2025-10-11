@@ -1,0 +1,34 @@
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+    <% }else{ res.redirect('/') } %>
+
+        <!-- A Message Block, used to display messages in a view -->
+        <%- messages() %>
+
+                        <% if (errors) { %>
+                            <ul class="notice">
+                                <% errors.forEach(error=> { %>
+                                    <li>
+                                        <%= error.msg %>
+                                    </li>
+                                    <% }) %>
+                            </ul>
+                            <% } %>
+
+            <!-- Classification form -->
+            <form id="deleteClassForm" action="/inv/delete-class" method="post">
+                <p> ❗Please select the Classification you wish to delete - The delete is permanent. Make sure that this class has no inventory items before deleting❗</p>
+                
+                <label for="classificationList">Classification Name</label>
+                <%- classificationSelect %>
+                
+                
+
+                <button id="deleteClass" type="submit">Delete Classification </button>
+
+                <input type="hidden" name="inv_id"
+                <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+                <% } %>>
+            </form>

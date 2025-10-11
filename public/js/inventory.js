@@ -42,5 +42,3 @@ function buildInventoryList(data) {
     //Diplay the contents in the Inventory Management View
     inventoryDisplay.innerHTML = dataTable;
 }
-
-
