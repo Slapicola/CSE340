@@ -64,10 +64,10 @@ app.set("layout", "./layouts/layout") // not at views root
 app.set('views', path.join(__dirname, 'views/layouts'));
 
 // Keep messing with this
-// app.use((req, res, next) => {
-//   res.locals.loggedin = req.session.loggedin || false
-//   next()
-// })
+app.use((req, res, next) => {
+  res.locals.loggedin = req.session.loggedin || false
+  next()
+})
 
 
 /* ***********************
