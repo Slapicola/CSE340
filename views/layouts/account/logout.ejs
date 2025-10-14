@@ -1,0 +1,15 @@
+<!-- The Content Heading, descrides the content of the view -->
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+    <% }else{ res.redirect('/') } %>
+
+        <!-- A Message Block, used to display messages in a view -->
+        <%- messages() %>
+
+        <!-- Warning about logging out and logout button -->
+         <section>
+            <p>Are you sure you want to logout?</p>
+            <button>Logout</button>
+         </section>

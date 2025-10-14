@@ -31,6 +31,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   name: 'sessionId',
+  cookie: { secure: false}
 }))
 
 // express Messages Middleware
@@ -44,6 +45,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) //for parsing application/x-www-form-urlencoded
 app.use(cookieParser())
 app.use(utilities.checkJWTToken)
+
+// app.use(utilities.loggedIn)
 
 
 
@@ -59,6 +62,12 @@ app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
 app.set('views', path.join(__dirname, 'views/layouts'));
+
+// Keep messing with this
+// app.use((req, res, next) => {
+//   res.locals.loggedin = req.session.loggedin || false
+//   next()
+// })
 
 
 /* ***********************

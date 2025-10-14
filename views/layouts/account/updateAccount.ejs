@@ -1,0 +1,52 @@
+<!-- The Content Heading, descrides the content of the view -->
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+    <% }else{ res.redirect('/') } %>
+
+        <!-- A Message Block, used to display messages in a view -->
+        <%- messages() %>
+
+            <% if (errors) { %>
+                <ul class="notice">
+                    <% errors.array().forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } %>
+
+                <!-- Account Update Form -->
+                 <form action="" method="post">
+                    <label for="account_firstname">First Name</label>
+                    <input type="text" name="account_firstname" id="account_firstname" required value="<%= locals.account_firstname %>">
+
+                    <label for="account_lastname">Last Name</label>
+                    <input type="text" name="account_lastname" id="account_lastname" required value="<%= locals.account_lastname %>">
+
+                    <label for="account_email">Email</label>
+                    <input type="email" name="account_email" id="account_email" required value="<%= locals.account_email %>">
+
+                    <button id="updateAccount" type="submit">Update Account</button>
+
+                    <input type="hidden" name="account_id" <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+                        <% } %>>
+                 </form>
+
+                 <!--Change Password Form  -->
+                 <form action="" method="post">
+                    <div id="requirements">
+                        <p>Entering a new password will change the current password.</p>
+                        <p>*Password must have at least 12 characters, at least 1 uppercase character, 1 number and one special character.*
+                        </p>
+                    </div>
+                    <label for="account_password">New Password</label>
+                    <input type="password" id="account_password" name="account_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+
+                    <button id="changePassword" type="submit">Change Password</button>
+
+                    <input type="hidden" name="account_id" <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+                        <% } %>>
+                 </form>

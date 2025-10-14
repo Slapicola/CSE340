@@ -157,6 +157,19 @@ Util.checkLogin = (req, res, next) => {
     }
 }
 
+// Checks if an account is logged in or not
+Util.loggedIn = (req, res, next) => {
+    if (res.locals.loggedin) {
+        return true
+        // res.locals.showLogout = true
+        // res.locals.showAccount = false
+    } else {
+        // res.locals.showLogout = false
+        // res.locals.showAccount = true
+        return false
+    }
+}
+
 
 
 

@@ -28,8 +28,14 @@ router.post(
     utilities.handleErrors(accountController.accountLogin)
 )
 
+// Proccess the logout attempt
+router.post("/logout", (req, res) => {
+    req.flash("notice", "You have been logged out.")
+    res.clearCookie("jwt")
+    res.status(200).redirect("/")
+})
 
-
-
+// Route to Account change page
+router.get("/updateAccount/:account_id", utilities.handleErrors(accountController.buildAccountUpdate))
 
 module.exports = router;
