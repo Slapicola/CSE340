@@ -14,7 +14,7 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 router.get("/detail/:inv_id", utilities.handleErrors(invController.buildByInvId));
 
 //Route to build management views
-router.get("/", utilities.handleErrors(invController.buildManagementView));
+router.get("/", utilities.accountTypeCheck, utilities.handleErrors(invController.buildManagementView));
 
 //Route to build Add Class View
 router.get("/add-classification", utilities.handleErrors(invController.buildAddClassView));

@@ -9,5 +9,14 @@
         <%- messages() %>
 
             <!-- Login form Display, display the content -->
-            <p>You're Logged In!</p>
-            <a title="Click to update your account" href="/account/updateAccount">Update Account</a>
+            
+            <% if (accountType === "Employee" || accountType === "Admin") { %>
+                <h2> Welcome <%= userName %> </h2>
+                <a title="Click to update your account" href="/account/updateAccount/<%= session.account.account_id %>">Update Account</a>
+                <h3>Inventory Management </h3>
+                <p><a href="/inv"> Inventory Management</a></p>
+            <% } else { %>
+                <h2> Welcome <%= userName %> </h2>
+                <a title="Click to update your account" href="/account/updateAccount/<%= session.account.account_id %>">Update
+                    Account</a>
+            <% } %>

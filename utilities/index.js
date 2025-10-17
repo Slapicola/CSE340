@@ -157,20 +157,44 @@ Util.checkLogin = (req, res, next) => {
     }
 }
 
-// Checks if an account is logged in or not
-Util.loggedIn = (req, res, next) => {
-    if (res.locals.loggedin) {
-        return true
-        // res.locals.showLogout = true
-        // res.locals.showAccount = false
-    } else {
-        // res.locals.showLogout = false
-        // res.locals.showAccount = true
-        return false
+// // Checks if an account is logged in or not
+// Util.loggedIn = (req, res, next) => {
+//     if (res.locals.loggedin) {
+//         return true
+//         // res.locals.showLogout = true
+//         // res.locals.showAccount = false
+//     } else {
+//         // res.locals.showLogout = false
+//         // res.locals.showAccount = true
+//         return false
+//     }
+// }
+
+Util.accountTypeCheck = (req, res, next) => {
+    const token = req.cookies.jwt
+    if (!token) {
+        res.locals.loggedin = false
+        return next()
+    }
+    try {
+        console.log("Cookie found. Decoding...");
+        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+
+        res.locals.loggedin = true
+        res.locals.accountData = decoded
+        req.accountData = decoded
+
+        if (decoded.account_type === "Employee" || decoded.account_type === "Admin") {
+            next()
+        } else {
+            req.flash("notice", "Your account does not allow you access to that page.")
+            return res.redirect("/account/login")
+        }
+    } catch (error) {
+        console.error(error.message)
+        next()
     }
 }
-
-
 
 
 
